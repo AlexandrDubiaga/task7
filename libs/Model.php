@@ -28,7 +28,15 @@ class Model
         $this->dataArray['%ERROR_AREA%'] = '';
         $this->dataArray['%SUCCES_MAIL%'] = '';
         $this->dataArray['%ERROR_SEND%'] = '';
-	$this->propertis = array('name'=>'','list'=>'','email'=>'','area'=>'');
+	$this->propertis['name']='';
+	$this->propertis['list']='';
+	$this->propertis['email']='';
+	$this->propertis['area']='';
+		
+		
+		
+		
+		//= array('name'=>'','list'=>'','email'=>'','area'=>'');
     }
     public function getArray()
     {
