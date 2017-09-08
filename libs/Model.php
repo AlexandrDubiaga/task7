@@ -6,6 +6,7 @@ class Model
     protected $email;
     protected $area;
     protected $dataArray = array();
+    protected $propertis = array();
     public function __construct()
     {
         $this->dataArray['%TITLE%'] = 'FORM';
@@ -27,6 +28,7 @@ class Model
         $this->dataArray['%ERROR_AREA%'] = '';
         $this->dataArray['%SUCCES_MAIL%'] = '';
         $this->dataArray['%ERROR_SEND%'] = '';
+	$this->propertis = array('name'=>'','list'=>'','email'=>'','area'=>'');
     }
     public function getArray()
     {
@@ -52,7 +54,7 @@ class Model
     {
         if (!empty($_POST['name'])) {
             $this->dataArray['%NAME%'] = $_POST['name'];
-            $this->name = $this->dataArray['%NAME%'];
+            $this->propertis['name'] = $_POST['name'];
             return true;
         } else {
             $this->dataArray['%ERROR_NAME%'] = "Empty name";
@@ -65,7 +67,7 @@ class Model
         if (!empty($_POST['email']))
         {
             $this->dataArray['%EMAIL%'] = $_POST['email'];
-            $this->email = $this->dataArray['%EMAIL%'];
+           $this->propertis['email'] = $_POST['email'];
             return true;
         }
         else
@@ -80,7 +82,7 @@ class Model
         if(!empty($_POST['msg']))
         {
             $this->dataArray['%AREA%'] = $_POST['msg'];
-            $this->area = $this->dataArray['%AREA%'];
+            $this->propertis['area'] = $_POST['msg'];
             return true;
         }
         else
@@ -97,13 +99,13 @@ class Model
             switch ($_POST['subject'])
             {
                 case 1:
-                    $this->list = SEL_1;
+                   $this->propertis['list'] = SEL_1;
                     break;
                 case 2:
-                    $this->list = SEL_2;
+                    $this->propertis['list']  = SEL_2;
                     break;
                 case 3:
-                    $this->list = SEL_3;
+                    $this->propertis['list']  = SEL_3;
                     break;
             }
             return true;
@@ -117,12 +119,12 @@ class Model
     public function sendEmail()
     {
         date_default_timezone_set('Europe/Kiev');
-        $message = 'From who: '.$this->name."\n";
-        $message .= 'Message: ' . $this->area . "\n";
+        $message = 'From who: '.$this->propertis['name']."\n";
+        $message .= 'Message: ' . $this->propertis['area'] . "\n";
         $message .= "\n".'IP: '. $_SERVER['REMOTE_ADDR']. "\n";
         $message .= 'Date: '.date("Y-m-d");
-        $header = 'From: '.$this->email . "\n" . 'Content-type: text/html; charset=utf-8' . "\n" . 'Reply-To: '. $this->email . "\n" ;
-        $sendMail = mail(EMAIL, $this->list, $message, $header);
+        $header = 'From: '.$this->propertis['email'] . "\n" . 'Content-type: text/html; charset=utf-8' . "\n" . 'Reply-To: '. $this->propertis['email'] . "\n" ;
+        $sendMail = mail(EMAIL, $this->propertis['list'], $message, $header);
         if ($sendMail)
         {
             $this->dataArray['%SUCCES_MAIL%'] = 'Mail sent!';
