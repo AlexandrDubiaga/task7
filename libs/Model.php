@@ -62,7 +62,7 @@ class Model
     {
         if (!empty($_POST['name'])) {
             $this->dataArray['%NAME%'] = $_POST['name'];
-            $this->propertis['name'] = $_POST['name'];
+            $this->propertis['name'] = $this->dataArray['%NAME%'];
             return true;
         } else {
             $this->dataArray['%ERROR_NAME%'] = "Empty name";
@@ -75,7 +75,7 @@ class Model
         if (!empty($_POST['email']))
         {
             $this->dataArray['%EMAIL%'] = $_POST['email'];
-           $this->propertis['email'] = $_POST['email'];
+           $this->propertis['email'] = $this->dataArray['%EMAIL%'];
             return true;
         }
         else
@@ -90,7 +90,7 @@ class Model
         if(!empty($_POST['msg']))
         {
             $this->dataArray['%AREA%'] = $_POST['msg'];
-            $this->propertis['area'] = $_POST['msg'];
+            $this->propertis['area'] = $this->dataArray['%AREA%'];
             return true;
         }
         else
