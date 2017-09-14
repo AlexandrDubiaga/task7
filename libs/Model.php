@@ -127,6 +127,11 @@ class Model
         if ($this->sendMess)
         {
             $this->dataArray['%SUCCES_MAIL%'] = 'Mail sent!';
+            $this->dataArray['%NAME%'] = '';
+            $this->dataArray['%EMAIL%'] = '';
+            $this->dataArray['%ERRORS_FIELDS%'] = 'Empty inputs';
+            $this->dataArray['%AREA%'] = '';
+        
             return true;
         }
         else
